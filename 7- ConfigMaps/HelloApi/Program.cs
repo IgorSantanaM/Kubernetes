@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.Configure<Config>(builder.Configuration);
@@ -13,8 +15,7 @@ app.MapGet("/", async (HttpClient httpClient, IOptions<Config> config) =>
 
 app.Run();
 
-
 internal class Config
 {
-    public string NameApiUri {get; init;} = null!;
+    public string NameApiUri { get; init; } = null!;
 }

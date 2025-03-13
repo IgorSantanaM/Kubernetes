@@ -24,7 +24,7 @@ spec:
         resources:
         volumeMounts:
           - name: shared-logs
-            mountPath: /var/log/nginx
+            mountPath: /var/lo/gnginx
       - name: log-sidecar
         image: alpine
         command: ["/bin/sh"]
