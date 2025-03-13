@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: job-demo
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+  namespace: job-demo
+spec:
+  template:
+    spec:
+      containers:
+      - name: job-demo-console-app
+        image: k8scourse/module9-job-demo-console-app:1
+        # args: ["simulateError"]
+      restartPolicy: Never
+  # completions: 2 creates another pod to do the same job (after)
+  # parallelism: 2 creates another pod to do the same job (the same time)
+  # backoffLimit: 3 how many times it will retry: if not set the default is 6
+  # ttlSecondsAfterFinished: 60 after the job is finished it will take the x seconds to remove the pods, default = dont delete the jobs
+  # completionMode: Indexed # Only valid with parallelism >1 and with a completions value.
+                            # Sets zero-based JOB_COMPLETION_INDEX environment variable in the container.
